@@ -40,7 +40,7 @@
         { value: '8' /* a */ },
       ]
 
-      withoutCheckDigit = values.map(e => e.value).join('')
+      withoutCheckDigit = values.map(e => e.value).join('').substr(2, 13);
       const idNumber = withoutCheckDigit + calculateCheckDigit(withoutCheckDigit)
 
       document.getElementById('result').innerHTML = `<p>${ idNumber }</p>`
@@ -149,7 +149,7 @@
       return pad.substring(0, pad.length - str.length) + str
     }
 
-    addOptions('year', 20, 99, v => `${v} (~${year - Number(v)} years old)`)
+    addOptions('year', 1945, 1900 + year, v => `${v} (~${1900 + year - Number(v)} years old)`)
     addOptions('month', 1, 12)
     addOptions('day', 1, 31)
     addOptions('sequence', 0, 999, v => pad(v), pad, '800')
